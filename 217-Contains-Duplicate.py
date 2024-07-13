@@ -4,9 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         \\\
-        f = {}
+        f = set()
         for num in nums:
             if num in f:
                 return True
-            f[num] = 1
+            else:
+                f.add(num)
         return False
