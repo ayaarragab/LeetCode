@@ -1,12 +1,12 @@
 class Solution(object):
     def containsDuplicate(self, nums):
-        """
+        \\\
         :type nums: List[int]
         :rtype: bool
-        """
-        hash_set = {}
+        \\\
+        f = {}
         for num in nums:
-            if num in hash_set:
+            if num in f:
                 return True
-            hash_set[num] = 1
+            f[num] = 1
         return False
