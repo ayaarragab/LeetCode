@@ -5,20 +5,16 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        if len(nums) == 1 and k == 1:
-            return nums
-        hashmap = {}
-        trickyList = [[] for x in range(len(nums) + 1)]
+        listOflists = [[] for _ in range(len(nums) + 1)]
+        l = []
+        d = {}
         for num in nums:
-            hashmap[num] = 1 + hashmap.get(num, 0)
-        for key, value in hashmap.items():
-            trickyList[value].append(key)
-        result = []
-        for i in range(len(trickyList) - 1, 0, -1):
-            if trickyList[i] == []:
-                continue
-            for num in trickyList[i]:
-                if len(result) == k:
-                    return result
-                result.append(num)
-        return result
+            d[num] = 1 + d.get(num, 0)
+        for key, v in d.items():
+            listOflists[v].append(key)
+        for i in range(len(listOflists) - 1, 0, -1):
+            for num in listOflists[i]:
+                if len(l) == k:
+                    break
+                l.append(num)
+        return l
