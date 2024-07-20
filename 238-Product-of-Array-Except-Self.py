@@ -4,17 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        res = [1 for num in nums]
-        pre = 1
-        post = 1
         n = len(nums)
+        res = [1 for _ in range(n)]
+        prefix, postfix = 1, 1
         for i in range(0, n):
-            if i == 0:
-                res[0] = 1
-                continue
-            pre *= nums[i - 1]
-            res[i] = pre
-        for k in range(n - 1, -1, -1):
-            res[k] *= post
-            post *= nums[k]
+            res[i] = prefix
+            prefix *= nums[i]
+        for k in range(n - 1, -1 , -1):
+            res[k] *= postfix
+            postfix *= nums[k]
         return res
