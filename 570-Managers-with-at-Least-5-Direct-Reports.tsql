@@ -1,0 +1,7 @@
+/* Write your T-SQL query statement below */
+select e1.name
+from Employee as e1
+INNER JOIN Employee as e2
+ON e1.id = e2.managerId /*e1 has the managers and e2 has the employees*/
+GROUP BY e1.name, e1.id /* we should mention e1.name and e1.id as they're mentioned in both select and aggregate funtion */
+HAVING COUNT(e2.id) >= 5; /* e2.id is employees */
