@@ -13,19 +13,16 @@ class MinStack(object):
             self.min = val
             self.min_states.append(val)
         elif val < self.min:
-                self.min = val
-                self.min_states.append(val)
+            self.min = val
         self.stack.append(val)
+        self.min_states.append(min(val, self.min_states[-1]))
 
     def pop(self):
         """
         :rtype: None
         """
-        element = self.stack.pop()
-        if element == self.min_states[-1] and element not in self.stack:
-            self.min_states.pop()
-            self.min = None if not self.min_states else self.min_states[-1]
-        return element
+        self.min_states.pop()
+        return self.stack.pop()
 
     def top(self):
         """
