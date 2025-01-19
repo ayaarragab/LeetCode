@@ -1,17 +1,20 @@
 class Solution(object):
     def isValid(self, s):
-        \\\
+        """
         :type s: str
         :rtype: bool
-        \\\
+        """
         stack = []
-        m = {'}':'{', ']':'[', ')':'('}
         for c in s:
-            if stack and c in m:
-                if stack[-1] == m[c]:
+            if c in '{([':
+                stack.append(c)
+            else:
+                if stack and stack[-1] == '{' and c == '}':
+                    stack.pop()
+                elif stack and stack[-1] == '(' and c == ')':
+                    stack.pop()
+                elif stack and stack[-1] == '[' and c == ']':
                     stack.pop()
                 else:
                     return False
-            else:
-                stack.append(c)
         return not stack
