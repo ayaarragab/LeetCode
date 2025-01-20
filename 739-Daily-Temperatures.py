@@ -4,12 +4,11 @@ class Solution(object):
         :type temperatures: List[int]
         :rtype: List[int]
         """
-        n = len(temperatures)
-        result = [0] * n
+        output = [0] * len(temperatures)
         stack = []
-        for i, t in enumerate(temperatures):
-            while stack and t > stack[-1][0]:
-                sVal, sIdx = stack.pop()
-                result[sIdx] = i - sIdx
-            stack.append([t, i])
-        return result
+        for i, num in enumerate(temperatures):
+            while stack and num > temperatures[stack[-1]]:
+                e = stack.pop()
+                output[e] = abs(e - i)
+            stack.append(i)
+        return output
