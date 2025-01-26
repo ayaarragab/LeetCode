@@ -4,9 +4,7 @@ class Solution(object):
         :type sentences: List[str]
         :rtype: int
         """
-        maxi = len(sentences[0].split())
-
+        max_w = 0
         for s in sentences:
-            n = len(s.split())
-            maxi = maxi if maxi >= n else n
-        return maxi
+            max_w = max(max_w, len(s.split()))
+        return max_w
