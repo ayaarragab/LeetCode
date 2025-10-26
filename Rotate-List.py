@@ -14,19 +14,18 @@ class Solution(object):
             return None
         if head and not head.next:
             return head
-        temp = head
-        length = 0
-        while temp:
-            temp = temp.next
+        tail = head
+        length = 1
+        while tail.next:
+            tail = tail.next
             length += 1
+        tail.next = head
         turns = k % length
-        current = head
-        for _ in range(turns):
-            while current.next.next:
-                current = current.next
-            new_head = current.next
-            current.next.next = head
-            current.next = None
-            head = new_head
-            current = new_head
+        steps_to_new_tail = length - turns - 1
+        new_tail = head
+        for _ in range(steps_to_new_tail):
+            new_tail = new_tail.next
+
+        head = new_tail.next
+        new_tail.next = None
         return head
