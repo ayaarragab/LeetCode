@@ -80,10 +80,14 @@ class Solution(object):
             return head
         length += 1
         old_head, new_head = insert_front(head)
-
+        
         one_prev = get_prev_nth(old_head, k)
-        two_prev = get_prev_nth(old_head, length - k)
+        if one_prev is None:
+            one_prev = new_head
 
+        two_prev = get_prev_nth(old_head, length - k)
+        if two_prev is None:
+            two_prev = new_head
   
         if k <= (length - 1) // 2:
             swap(one_prev, two_prev, old_head)
@@ -92,4 +96,3 @@ class Solution(object):
         
         head = delete_front(new_head)
         return head
-
