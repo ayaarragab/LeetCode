@@ -4,10 +4,12 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        sum_n = 0
-        product_n = 1
-        while n > 0:
-            sum_n += n % 10
-            product_n *= n % 10
-            n //= 10
-        return product_n - sum_n
+        product = 1
+        sum_ = 0
+        p_n = n
+        while p_n:
+            d = p_n % 10
+            product *= d
+            sum_ += d
+            p_n //= 10
+        return product - sum_
