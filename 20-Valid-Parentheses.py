@@ -1,20 +1,18 @@
 class Solution(object):
+    def is_right_para(self, c1, c2):
+        comb = c1 + c2
+        return comb == "()" or comb == "{}" or comb == "[]"
+
+
     def isValid(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-        stack = []
+        if not s:
+            return True
+        stk = []
         for c in s:
-            if c in '{([':
-                stack.append(c)
+            if c in "([{":
+                stk.append(c)
+            elif len(stk) and self.is_right_para(stk[-1], c):
+                stk.pop()
             else:
-                if stack and stack[-1] == '{' and c == '}':
-                    stack.pop()
-                elif stack and stack[-1] == '(' and c == ')':
-                    stack.pop()
-                elif stack and stack[-1] == '[' and c == ']':
-                    stack.pop()
-                else:
-                    return False
-        return not stack
+                return False
+        return len(stk) == 0
